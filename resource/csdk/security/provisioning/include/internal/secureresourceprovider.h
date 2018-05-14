@@ -25,7 +25,10 @@
 #include "experimental/securevirtualresourcetypes.h"
 #include "pmtypes.h"
 #include "octypes.h"
+
+#if defined(WITH_CLOUD)
 #include "occloudprovisioning.h"
+#endif
 
 // Enum type index for data types.
 typedef enum
