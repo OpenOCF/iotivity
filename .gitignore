@@ -18,6 +18,8 @@
 #
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+.bazelrc
+
 # Ignore output dirs
 /release
 resource/release

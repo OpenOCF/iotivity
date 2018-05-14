@@ -1,0 +1,42 @@
+# Bazel option defaults
+
+## Copy what you need to <root>/.bazelrc in order to customize.  Do
+## not check .bazelrc into version control
+
+## Build options specified here or in .bazelrc are cumulative.
+
+# startup --batch --host_jvm_args=-XX:-UseParallelGC
+# import /home/bobs_project/bazelrc
+
+## We probably always want this:
+build --color=yes
+
+## The rest should be used in your private .bazelrc
+################################################################
+# dev/debug options
+# build -s
+# build --verbose_failures
+# build --sandbox_debug
+# build --show_timestamps
+# build --keep_going
+# build --jobs 600
+# query --keep_going
+
+################################################################
+## target: android
+## The BUILD files use both fat_api_cpu and android_cpu to configure
+## the build.  Building an android_* target defaults to
+## armeabi-v7a. To target a different API, specify both fat_api_cpu
+## and android_cpu.
+
+# default (no need to specify for android_* targets):
+# build --fat_apk_cpu=armeabi-v7a
+# build --android_cpu=armeabi-v7a
+
+# fastest emulator:
+# build --fat_apk_cpu=x86
+# build --android_cpu=x86
+
+# build --fat_apk_cpu=arm64-v8a
+# build --android_cpu=arm64-v8a
+

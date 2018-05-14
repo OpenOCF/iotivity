@@ -1,0 +1,114 @@
+# # TODO: platform-dependent configs
+# # TODO: with_tcp, etc
+
+# cc_library(
+#     name = "mbedtls-lib",
+#     copts = [
+#         # the library headers:
+#         "-Iexternal/mbedtls/include/mbedtls",
+#         "-Iexternal/mbedtls/include/",
+
+#         # custom config.h:
+#         "-Iconfig",
+#         "-Iconfig/mbedtls",
+#     ],
+#     srcs = glob(["library/*.c"]),
+#     hdrs = glob(["include/mbedtls/*.h"],
+#                 exclude=["include/mbedtls/config.h"])
+#     + ["@//config/mbedtls:config.h",
+#     ],
+
+#     visibility = ["//visibility:public"]
+# )
+
+# genrule(
+#     name = "patch",
+#     srcs = [
+#         "include/mbedtls/certs.h",
+#         # "include/mbedtls/check_config.h",
+#         # "include/mbedtls/compat-1.3.h",
+#         # "include/mbedtls/net_sockets.h",
+#         # "include/mbedtls/ssl.h",
+#         # "include/mbedtls/ssl_ciphersuites.h",
+#         # "include/mbedtls/ssl_internal.h",
+#         # "include/mbedtls/x509.h",
+#         # "include/mbedtls/x509_crt.h",
+#         # "library/asn1write.c",
+#         # "library/bignum.c",
+#         # "library/certs.c",
+#         # "library/ctr_drbg.c",
+#         # "library/ecp.c",
+#         # "library/entropy_poll.c",
+#         # "library/md.c",
+#         # "library/net_sockets.c",
+#         # "library/pkcs5.c",
+#         # "library/pkparse.c",
+#         # "library/rsa.c",
+#         # "library/ssl_ciphersuites.c",
+#         # "library/ssl_cli.c",
+#         # "library/ssl_srv.c",
+#         # "library/ssl_tls.c",
+#         # "library/version_features.c",
+#         # "library/x509.c",
+#         # "library/x509_create.c",
+#         # "library/x509_crl.c",
+#         # "library/x509_crt.c",
+#         # "library/x509write_crt.c",
+#         # "programs/ssl/ssl_client2.c",
+#         # "programs/ssl/ssl_server2.c",
+#         # "programs/x509/cert_write.c",
+#         # "tests/data_files/server1-bothnames.crt",
+#         # "tests/data_files/server1-directoryname.crt",
+#         # "tests/data_files/server1-dnsname.crt",
+#         # "tests/data_files/server11-directoryname.crt",
+#         # "tests/ssl-opt.sh",
+#         # "tests/suites/test_suite_x509parse.data",
+#         # "tests/suites/test_suite_x509write.data",
+#         "tests/suites/test_suite_x509write.function",
+#             "@//config/mbedtls:ocf.patch"
+#     ],
+#     outs = [
+#         "out/include/mbedtls/certs.h",
+#         # "out/include/mbedtls/check_config.h",
+#         # "out/include/mbedtls/compat-1.3.h",
+#         # "out/include/mbedtls/net_sockets.h",
+#         # "out/include/mbedtls/ssl.h",
+#         # "out/include/mbedtls/ssl_ciphersuites.h",
+#         # "out/include/mbedtls/ssl_internal.h",
+#         # "out/include/mbedtls/x509.h",
+#         # "out/include/mbedtls/x509_crt.h",
+#         # "out/library/asn1write.c",
+#         # "out/library/bignum.c",
+#         # "out/library/certs.c",
+#         # "out/library/ctr_drbg.c",
+#         # "out/library/ecp.c",
+#         # "out/library/entropy_poll.c",
+#         # "out/library/md.c",
+#         # "out/library/net_sockets.c",
+#         # "out/library/pkcs5.c",
+#         # "out/library/pkparse.c",
+#         # "out/library/rsa.c",
+#         # "out/library/ssl_ciphersuites.c",
+#         # "out/library/ssl_cli.c",
+#         # "out/library/ssl_srv.c",
+#         # "out/library/ssl_tls.c",
+#         # "out/library/version_features.c",
+#         # "out/library/x509.c",
+#         # "out/library/x509_create.c",
+#         # "out/library/x509_crl.c",
+#         # "out/library/x509_crt.c",
+#         # "out/library/x509write_crt.c"
+#     ],
+#     visibility = [ "//java:__pkg__"],
+#     cmd = 'patch -p3 -l < $(location @//config/mbedtls:ocf.patch)'
+# )
+
+genrule(
+    name = "gentest",
+    srcs = glob(["include/**/*h"]),
+    outs = ["gentest.log"],
+    #cmd  = "pwd > $@"
+    #cmd  = "ls -l external/mbedtls/include/mbedtls > $@"
+    #cmd  = "ls -l bazel-out/darwin-fastbuild/genfiles/external/mbedtls > $@"
+    cmd  = "find -L includes -name *.h > $@"
+)
