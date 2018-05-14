@@ -63,7 +63,6 @@ cc_library(
              "-Iresource/csdk/connectivity/api",
              "-Iresource/csdk/connectivity/common/inc",
              "-Iresource/csdk/connectivity/inc",
-             #"-Iresource/csdk/connectivity/lib/libcoap-4.1.1/include",
              "-Iresource/csdk/include",
              "-Iresource/csdk/resource-directory/include",
              "-Iresource/csdk/stack/include",
@@ -78,7 +77,9 @@ cc_library(
              "-Iexternal/libcoap/include",
              "-Iexternal/libcoap/include/coap",
 
-             "-Iextlibs//mbedtls/mbedtls/include",
+             "-Iexternal/mbedtls/patched/include",
+             "-Iexternal/mbedtls/patched/include/mbedtls",
+
              "-Iexternal/local_jdk/include",
 
              "-Iconfig/darwin"
@@ -168,6 +169,7 @@ cc_library(
         "//:iotivity_c_headers",
         "//:iotivity_cpp_headers",
         "@libcoap//:libcoap-lib",
+        "@mbedtls//:mbedtls-lib",
         "@boost//:iostreams",
         "@boost//:variant"
     ],

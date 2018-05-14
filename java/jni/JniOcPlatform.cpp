@@ -28,7 +28,10 @@
 #include "JniOcSecurity.h"
 #include "JniUtils.h"
 #include "ocpayload.h"
+
+#ifdef RD_CLIENT
 #include "RDClient.h"
+#endif
 
 #ifdef WITH_CLOUD
 #include "JniOcAccountManager.h"
